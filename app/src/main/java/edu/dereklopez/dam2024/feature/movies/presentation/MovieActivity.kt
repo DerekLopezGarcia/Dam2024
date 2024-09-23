@@ -25,18 +25,24 @@ class MovieActivity : AppCompatActivity() {
     }
     override fun onStart(){
         super.onStart()
+        Log.d("@dev", "onStart")
 
     }
     override fun onResume(){
         super.onResume()
+        Log.d("@dev", "onResume")
 }
     override fun onPause(){
         super.onPause()
+        Log.d("@dev", "onPause")
     }
     override fun onStop(){
         super.onStop()
+        Log.d("@dev", "onStop")
     }
     override fun onDestroy(){
         super.onDestroy()
+        Log.d("@dev", "onDestroy")
+
     }
 }
