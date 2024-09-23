@@ -22,6 +22,8 @@ class MovieActivity : AppCompatActivity() {
         viewModel.viewCreated()
         val movies = viewModel.viewCreated()
         Log.d("@dev",movies.toString())
+        val movie = viewModel.itemsSelected("1")
+        Log.d("@dev", movie.toString())
     }
     override fun onStart(){
         super.onStart()

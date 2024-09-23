@@ -10,4 +10,7 @@ class MovieMockRemoteDataSource {
             Movie("3", "The Dark Knight", "https://example.com/poster3.jpg")
         )
     }
+    fun getMovie(id: String): Movie? {
+        return getMovies().find { it.id == id }
+    }
 }

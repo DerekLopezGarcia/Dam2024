@@ -1,10 +1,18 @@
 package edu.dereklopez.dam2024.feature.movies.presentation
 import androidx.lifecycle.ViewModel
+import edu.dereklopez.dam2024.feature.movies.domain.GetMovieUseCase
 import edu.dereklopez.dam2024.feature.movies.domain.GetMoviesUseCase
 import edu.dereklopez.dam2024.feature.movies.domain.Movie
 
-class MovieViewModel (private val getMovieUseCase: GetMoviesUseCase) : ViewModel() {
+class MovieViewModel(
+    private val getMoviesUseCase: GetMoviesUseCase,
+    private val getMovieUseCase: GetMovieUseCase
+) : ViewModel() {
     fun viewCreated() : List <Movie> {
-        return getMovieUseCase.invoke()
+        return getMoviesUseCase.invoke()
+    }
+
+    fun itemsSelected(id: String): Movie? {
+        return getMovieUseCase.invoke(id)
     }
 }
