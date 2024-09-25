@@ -9,4 +9,8 @@ class SuperheroDataRepository(private val mockRemoteDataSource: SuperheroMockRem
     override fun getSuperheroes(): List<Superhero> {
         return mockRemoteDataSource.getSuperheroes()
     }
+    override fun getSuperhero(id: String): Superhero? {
+        return mockRemoteDataSource.getSuperhero(id)
+    }
+
 }

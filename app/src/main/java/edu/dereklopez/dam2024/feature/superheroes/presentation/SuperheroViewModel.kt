@@ -8,5 +8,8 @@ class SuperheroViewModel(private val getSuperheroesUseCase: GetSuperheroesUseCas
     fun viewCreated(): List<Superhero> {
         return getSuperheroesUseCase.invoke()
     }
+    fun itemsSelected(id: String): Superhero? {
+        return getSuperheroesUseCase.invoke().find { it.id == id }
+    }
 
 }
