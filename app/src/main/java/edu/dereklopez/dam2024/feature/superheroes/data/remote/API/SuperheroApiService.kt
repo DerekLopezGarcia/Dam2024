@@ -1,4 +1,4 @@
-package edu.dereklopez.dam2024.feature.superheroes.data
+package edu.dereklopez.dam2024.feature.superheroes.data.remote.API
 
 import edu.dereklopez.dam2024.feature.superheroes.domain.Superhero
 import retrofit2.http.GET
