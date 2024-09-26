@@ -10,6 +10,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import edu.dereklopez.dam2024.R
 import edu.dereklopez.dam2024.feature.movies.data.MovieDataRepository
+import edu.dereklopez.dam2024.feature.movies.data.local.MovieXmlLocalDataSource
 import edu.dereklopez.dam2024.feature.movies.data.remote.MovieMockRemoteDataSource
 import edu.dereklopez.dam2024.feature.movies.domain.GetMoviesUseCase
 import edu.dereklopez.dam2024.feature.movies.domain.Movie
@@ -23,6 +24,7 @@ class MovieActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         val movies = viewModel.viewCreated()
         bindData(movies)
+        testXml()
 
     }
 
@@ -53,5 +55,14 @@ class MovieActivity : AppCompatActivity() {
                 Log.d("@dev", "Movie selected: ${it.title}")
             }
         }
+    }
+    private fun testXml() {
+        val xmlDataSource = MovieXmlLocalDataSource(this)
+        val movie = viewModel.itemsSelected("1")
+        movie?.let {
+            xmlDataSource.saveMovie(it)
+        }
+        val movie2 = xmlDataSource.findMovie()
+        Log.d("@dev", "Movie selected: ${movie2.title}")
     }
 }
