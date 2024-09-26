@@ -4,9 +4,9 @@ import edu.dereklopez.dam2024.feature.superheroes.domain.Superhero
 
 class SuperheroMockRemoteDataSource {
     val localSuperheroes = listOf(
-        Superhero("1", "Super1",),
-        Superhero("2", "Super2",),
-        Superhero("3", "Super3",)
+        Superhero("1", "Super1", "a"),
+        Superhero("2", "Super2", "b"),
+        Superhero("3", "Super3", "c")
     )
 
     fun getSuperheroes(): List<Superhero> {

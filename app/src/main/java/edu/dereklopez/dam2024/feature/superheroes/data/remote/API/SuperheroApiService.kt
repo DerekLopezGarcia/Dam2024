@@ -9,7 +9,4 @@ interface SuperheroApiService{
     suspend fun getSuperheroes(): List<Superhero>
     @GET("id/{id}.json")
     suspend fun getSuperhero(@Path("id") id: String): Superhero
-    @GET("name/{name}.json")
-    suspend fun getSuperheroByName(@Path("name") name: String): Superhero
-
 }

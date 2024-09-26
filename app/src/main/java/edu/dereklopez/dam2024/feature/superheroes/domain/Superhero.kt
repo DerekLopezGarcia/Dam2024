@@ -3,6 +3,7 @@ package edu.dereklopez.dam2024.feature.superheroes.domain
 data class Superhero(
     val id: String,
     val name: String,
+    val slug: String,
     //val photo: String,
     //val biography: String,
     //val powerstats: String,

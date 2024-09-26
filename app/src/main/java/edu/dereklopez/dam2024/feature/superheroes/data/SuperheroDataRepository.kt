@@ -1,16 +1,17 @@
 package edu.dereklopez.dam2024.feature.superheroes.data
 
-import edu.dereklopez.dam2024.feature.superheroes.data.remote.SuperheroMockRemoteDataSource
+import edu.dereklopez.dam2024.feature.superheroes.data.remote.SuperheroRetrofitRemoteDataSource
 import edu.dereklopez.dam2024.feature.superheroes.domain.Superhero
 import edu.dereklopez.dam2024.feature.superheroes.domain.SuperheroRepository
 
-class SuperheroDataRepository(private val mockRemoteDataSource: SuperheroMockRemoteDataSource) :
+class SuperheroDataRepository(private val retrofitRemoteDataSource: SuperheroRetrofitRemoteDataSource) :
     SuperheroRepository {
-    override fun getSuperheroes(): List<Superhero> {
-        return mockRemoteDataSource.getSuperheroes()
+    override suspend fun getSuperheroes(): List<Superhero> {
+        return retrofitRemoteDataSource.getSuperheroes()
     }
-    override fun getSuperhero(id: String): Superhero? {
-        return mockRemoteDataSource.getSuperhero(id)
+
+    override suspend fun getSuperhero(id: String): Superhero? {
+        return retrofitRemoteDataSource.getSuperhero(id)
     }
 
 }
