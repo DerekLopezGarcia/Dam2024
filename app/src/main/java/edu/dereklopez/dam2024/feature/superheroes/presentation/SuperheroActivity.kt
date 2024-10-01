@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import edu.dereklopez.dam2024.R
+import edu.dereklopez.dam2024.feature.superheroes.data.local.SuperheroXmlLocalDataSource
 import edu.dereklopez.dam2024.feature.superheroes.domain.Superhero
 
 class SuperheroActivity : AppCompatActivity() {
@@ -47,5 +48,14 @@ class SuperheroActivity : AppCompatActivity() {
                 Log.d("@dev", "Superhero selected: ${it.name}")
             }
         }
+    }
+    private fun testxml() {
+        val xmlDataSource = SuperheroXmlLocalDataSource(this)
+        val superhero = viewModel.itemsSelected("1")
+        superhero?.let {
+            xmlDataSource.saveSuperhero(it)
+        }
+        val superhero2 = xmlDataSource.find()
+        Log.d("@dev", "Superhero selected: ${superhero2.name}")
     }
 }

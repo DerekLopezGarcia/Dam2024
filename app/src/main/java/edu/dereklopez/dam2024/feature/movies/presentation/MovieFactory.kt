@@ -6,8 +6,8 @@ import edu.dereklopez.dam2024.feature.movies.domain.GetMovieUseCase
 import edu.dereklopez.dam2024.feature.movies.domain.GetMoviesUseCase
 
 class MovieFactory {
-    fun buildViewModel(): MovieViewModel {
-        return MovieViewModel(
+    fun buildViewModel(): MoviesViewModel {
+        return MoviesViewModel(
             GetMoviesUseCase(MovieDataRepository(MovieMockRemoteDataSource())),
             GetMovieUseCase(MovieDataRepository(MovieMockRemoteDataSource()))
         )

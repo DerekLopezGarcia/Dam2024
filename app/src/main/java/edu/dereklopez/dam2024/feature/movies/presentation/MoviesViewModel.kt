@@ -4,7 +4,7 @@ import edu.dereklopez.dam2024.feature.movies.domain.GetMovieUseCase
 import edu.dereklopez.dam2024.feature.movies.domain.GetMoviesUseCase
 import edu.dereklopez.dam2024.feature.movies.domain.Movie
 
-class MovieViewModel(
+class MoviesViewModel(
     private val getMoviesUseCase: GetMoviesUseCase,
     private val getMovieUseCase: GetMovieUseCase
 ) : ViewModel() {

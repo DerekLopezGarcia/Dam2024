@@ -1,30 +1,26 @@
 package edu.dereklopez.dam2024.feature.movies.presentation
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import edu.dereklopez.dam2024.R
-import edu.dereklopez.dam2024.feature.movies.data.MovieDataRepository
 import edu.dereklopez.dam2024.feature.movies.data.local.MovieXmlLocalDataSource
-import edu.dereklopez.dam2024.feature.movies.data.remote.MovieMockRemoteDataSource
-import edu.dereklopez.dam2024.feature.movies.domain.GetMoviesUseCase
 import edu.dereklopez.dam2024.feature.movies.domain.Movie
 
-class MovieActivity : AppCompatActivity() {
+class MoviesActivity : AppCompatActivity() {
 
     private val MovieFactory: MovieFactory = MovieFactory()
     private val viewModel = MovieFactory.buildViewModel()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.actvivity_movies)
         val movies = viewModel.viewCreated()
         bindData(movies)
-        testXml()
+        //testXml()
+        textlist()
 
     }
 
@@ -62,7 +58,19 @@ class MovieActivity : AppCompatActivity() {
         movie?.let {
             xmlDataSource.saveMovie(it)
         }
-        val movie2 = xmlDataSource.findMovie()
+        val movie2 = xmlDataSource.find()
         Log.d("@dev", "Movie selected: ${movie2.title}")
+    }
+
+    private fun textlist() {
+        val xmlDataSource = MovieXmlLocalDataSource(this)
+        val movie = viewModel.viewCreated()
+        xmlDataSource.saveAll(movie)
+    }
+
+    private fun navigateToMovieDetaialActivity(movieId: String) {
+        val intent = Intent(this, MovieDetailActivity::class.java)
+        intent.putExtra(MovieDetailActivity.KEY_MOVIE_ID, movieId)
+        startActivity(intent)
     }
 }
