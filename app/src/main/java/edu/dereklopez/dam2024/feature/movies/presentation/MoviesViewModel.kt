@@ -8,11 +8,13 @@ class MoviesViewModel(
     private val getMoviesUseCase: GetMoviesUseCase,
     private val getMovieUseCase: GetMovieUseCase
 ) : ViewModel() {
-    fun viewCreated() : List <Movie> {
+
+    fun viewCreated(): List<Movie> {
         return getMoviesUseCase.invoke()
     }
 
-    fun itemsSelected(id: String): Movie? {
-        return getMovieUseCase.invoke(id)
+    fun itemSelected(movieId: String): Movie? {
+        return getMovieUseCase.invoke(movieId)
     }
+
 }

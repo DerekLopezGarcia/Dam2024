@@ -1,18 +1,25 @@
 package edu.dereklopez.dam2024.feature.movies.data.remote
 
+import edu.dereklopez.dam2024.feature.movies.data.local.MovieXmlLocalDataSource
 import edu.dereklopez.dam2024.feature.movies.domain.Movie
 
 class MovieMockRemoteDataSource {
-    val localMovies = listOf(
-        Movie("1", "The Shawshank Redemption", "https://example.com/poster1.jpg"),
-        Movie("2", "The Godfather", "https://example.com/poster2.jpg"),
-        Movie("3", "The Dark Knight", "https://example.com/poster3.jpg")
+
+    private val movies = listOf(
+        Movie("1", "title1", "poster1"),
+        Movie("2", "title2", "poster2"),
+        Movie("3", "title3", "poster3."),
+        Movie(title = "title4", poster = "poster4", id = "4")
     )
 
     fun getMovies(): List<Movie> {
-        return localMovies
+        return movies
     }
-    fun getMovie(id: String): Movie? {
-        return localMovies.find { it.id == id }
+
+    fun getMovie(movieId: String): Movie? {
+        return movies.firstOrNull { movie -> //renombro el it por movie
+            //it es un objeto Movie del listado
+            movie.id == movieId
+        }
     }
 }
