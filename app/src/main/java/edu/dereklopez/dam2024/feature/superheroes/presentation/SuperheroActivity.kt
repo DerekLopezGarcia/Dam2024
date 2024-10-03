@@ -4,58 +4,41 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import edu.dereklopez.dam2024.R
-import edu.dereklopez.dam2024.feature.superheroes.data.local.SuperheroXmlLocalDataSource
 import edu.dereklopez.dam2024.feature.superheroes.domain.Superhero
 
 class SuperheroActivity : AppCompatActivity() {
-    private val SuperheroFactory: SuperheroFactory = SuperheroFactory()
-    private val viewModel = SuperheroFactory.buildViewModel()
+    private lateinit var superheroFactory: SuperheroFactory
+    private lateinit var viewModel: SuperheroViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_superhero)
+
+        superheroFactory = SuperheroFactory(this)
+        viewModel = superheroFactory.buildViewModel()
+
         val superheroes = viewModel.viewCreated()
         bindData(superheroes)
-
     }
 
     private fun bindData(superheroes: List<Superhero>) {
-        findViewById<TextView>(R.id.movie_id_1).text = superheroes[0].id
-        findViewById<TextView>(R.id.movie_title_1).text = superheroes[0].name
-        findViewById<LinearLayout>(R.id.layout1).setOnClickListener {
-            val superhero = viewModel.itemsSelected(superheroes[0].id)
+        findViewById<TextView>(R.id.superhero_id_1).text = superheroes[0].id
+        findViewById<TextView>(R.id.superhero_name_1).text = superheroes[0].name
+        findViewById<LinearLayout>(R.id.layout_1).setOnClickListener {
+            val superhero: Superhero? = viewModel.itemSelected(superheroes[0].id)
             superhero?.let {
-                Log.d("@dev", "Superhero selected: ${it.name}")
+                Log.d("@dev", "Pelicula seleccionada: ${it.name}")
             }
         }
-        findViewById<TextView>(R.id.movie_id_2).text = superheroes[1].id
-        findViewById<TextView>(R.id.movie_title_2).text = superheroes[1].name
-        findViewById<LinearLayout>(R.id.layout2).setOnClickListener {
-            val superhero = viewModel.itemsSelected(superheroes[1].id)
-            superhero?.let {
-                Log.d("@dev", "Superhero selected: ${it.name}")
-            }
-        }
-        findViewById<TextView>(R.id.movie_id_3).text = superheroes[2].id
-        findViewById<TextView>(R.id.movie_title_3).text = superheroes[2].name
-        findViewById<LinearLayout>(R.id.layout3).setOnClickListener {
-            val superhero = viewModel.itemsSelected(superheroes[2].id)
-            superhero?.let {
-                Log.d("@dev", "Superhero selected: ${it.name}")
-            }
-        }
-    }
-    private fun testxml() {
-        val xmlDataSource = SuperheroXmlLocalDataSource(this)
-        val superhero = viewModel.itemsSelected("1")
-        superhero?.let {
-            xmlDataSource.saveSuperhero(it)
-        }
-        val superhero2 = xmlDataSource.find()
-        Log.d("@dev", "Superhero selected: ${superhero2.name}")
+        findViewById<TextView>(R.id.superhero_id_2).text = superheroes[1].id
+        findViewById<TextView>(R.id.superhero_name_2).text = superheroes[1].name
+
+        findViewById<TextView>(R.id.superhero_id_3).text = superheroes[2].id
+        findViewById<TextView>(R.id.superhero_name_3).text = superheroes[2].name
+
+        findViewById<TextView>(R.id.superhero_id_4).text = superheroes[3].id
+        findViewById<TextView>(R.id.superhero_name_4).text = superheroes[3].name
     }
 }

@@ -3,4 +3,12 @@
     <item name="layout_1" type="id" />
     <item name="movie_title_4" type="id" />
     <item name="movie_id_4" type="id" />
+    <item name="superhero_id_1" type="id" />
+    <item name="superhero_name_1" type="id" />
+    <item name="superhero_id_2" type="id" />
+    <item name="superhero_name_2" type="id" />
+    <item name="superhero_id_3" type="id" />
+    <item name="superhero_name_3" type="id" />
+    <item name="superhero_id_4" type="id" />
+    <item name="superhero_name_4" type="id" />
 </resources>

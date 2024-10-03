@@ -35,7 +35,7 @@ class MovieXmlLocalDataSource(private val context: Context) {
         return movies
     }
 
-    fun findByid(id: String): Movie? {
+    fun findById(id: String): Movie? {
         val jsonMovie = sharedPref.getString(id, null)
         return gson.fromJson(jsonMovie, Movie::class.java)
     }

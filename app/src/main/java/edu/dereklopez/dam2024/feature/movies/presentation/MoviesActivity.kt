@@ -1,6 +1,5 @@
 package edu.dereklopez.dam2024.feature.movies.presentation
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.LinearLayout
@@ -57,7 +56,7 @@ class MoviesActivity : AppCompatActivity() {
     private fun testMovie(){
         viewModel.viewCreated()
         val xmlDataSource = MovieXmlLocalDataSource(this)
-        val movie = xmlDataSource.findByid("1")
+        val movie = xmlDataSource.findById("1")
         Log.d("@dev", "$movie")
     }
 }
