@@ -5,7 +5,10 @@ import edu.dereklopez.dam2024.feature.superheroes.domain.GetSuperheroUseCase
 import edu.dereklopez.dam2024.feature.superheroes.domain.GetSuperheroesUseCase
 import edu.dereklopez.dam2024.feature.superheroes.domain.Superhero
 
-class SuperheroViewModel(private val getSuperheroesUseCase: GetSuperheroesUseCase,private val getSuperheroUseCase: GetSuperheroUseCase) : ViewModel() {
+class SuperheroViewModel(
+    private val getSuperheroesUseCase: GetSuperheroesUseCase,
+    private val getSuperheroUseCase: GetSuperheroUseCase
+) : ViewModel() {
     fun viewCreated() {
         getSuperheroesUseCase.invoke()
     }
