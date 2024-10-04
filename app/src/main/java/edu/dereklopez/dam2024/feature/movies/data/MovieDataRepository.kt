@@ -5,26 +5,31 @@ import edu.dereklopez.dam2024.feature.movies.data.remote.MovieMockRemoteDataSour
 import edu.dereklopez.dam2024.feature.movies.domain.Movie
 import edu.dereklopez.dam2024.feature.movies.domain.MovieRepository
 
+/**
+ * Naming: Modelo + DataRepository
+ */
 class MovieDataRepository(
     private val local: MovieXmlLocalDataSource,
     private val mockRemoteDataSource: MovieMockRemoteDataSource
 ) :
     MovieRepository {
+
     override fun getMovies(): List<Movie> {
-        val movies = local.findAll()
-        if (movies.isEmpty()) {
-            val remoteMovies = mockRemoteDataSource.getMovies()
-            local.saveAll(movies)
-            return remoteMovies
+        val moviesFromLocal = local.findAll()
+        if (moviesFromLocal.isEmpty()) {
+            val moviesFromRemote = mockRemoteDataSource.getMovies()
+            local.saveAll(moviesFromRemote)
+            return moviesFromRemote
         } else {
-            return movies
+            return moviesFromLocal
         }
     }
-    override fun getMovie(id: String): Movie? {
-        val localMovie = local.findById(id)
-        if (localMovie == null){
-            mockRemoteDataSource.getMovie(id)?.let {
-                local.saveMovie(it)
+
+    override fun getMovie(movieId: String): Movie? {
+        val localMovie = local.findById(movieId)
+        if (localMovie == null) {
+            mockRemoteDataSource.getMovie(movieId)?.let {
+                local.save(it)
                 return it
             }
         }

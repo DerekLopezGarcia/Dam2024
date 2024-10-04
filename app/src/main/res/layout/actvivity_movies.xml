@@ -70,4 +70,24 @@
             android:layout_marginLeft="20dp"
             android:text="Hello World!" />
     </LinearLayout>
+    <LinearLayout
+        android:id="@+id/layout4"
+        android:layout_margin="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/movie_id_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hello World!" />
+
+        <TextView
+            android:id="@+id/movie_title_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="Hello World!" />
+    </LinearLayout>
 </LinearLayout>

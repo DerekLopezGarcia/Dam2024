@@ -6,12 +6,14 @@ import edu.dereklopez.dam2024.R
 import edu.dereklopez.dam2024.feature.movies.domain.Movie
 
 class MovieXmlLocalDataSource(private val context: Context) {
+
     private val sharedPref = context.getSharedPreferences(
         context.getString(R.string.name_file_xml), Context.MODE_PRIVATE
     )
 
     private val gson = Gson()
-    fun saveMovie(movie: Movie) {
+
+    fun save(movie: Movie) {
         val editor = sharedPref.edit()
         editor.putString(movie.id, gson.toJson(movie))
         editor.apply()
@@ -35,9 +37,10 @@ class MovieXmlLocalDataSource(private val context: Context) {
         return movies
     }
 
-    fun findById(id: String): Movie? {
-        val jsonMovie = sharedPref.getString(id, null)
-        return gson.fromJson(jsonMovie, Movie::class.java)
+    fun findById(movieId: String): Movie? {
+        return sharedPref.getString(movieId, null)?.let { movie ->
+            gson.fromJson(movie, Movie::class.java)
+        }
     }
 
     fun delete() {
@@ -47,6 +50,4 @@ class MovieXmlLocalDataSource(private val context: Context) {
     fun deleteById(movieId: String) {
         sharedPref.edit().remove(movieId).apply()
     }
-
-
 }
